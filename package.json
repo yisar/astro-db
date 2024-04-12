@@ -1,15 +1,8 @@
 {
   "name": "@astrojs/db",
-  "version": "0.10.3",
-  "description": "Add libSQL and Astro Studio support to your Astro site",
+  "version": "0.9.11",
+  "description": "",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/withastro/astro.git",
-    "directory": "packages/db"
-  },
-  "bugs": "https://github.com/withastro/astro/issues",
-  "homepage": "https://docs.astro.build/en/guides/integrations-guide/db/",
   "type": "module",
   "author": "withastro",
   "types": "./index.d.ts",
@@ -27,8 +20,8 @@
       "types": "./dist/runtime/index.d.ts",
       "import": "./dist/runtime/index.js"
     },
-    "./dist/runtime/virtual.js": {
-      "import": "./dist/runtime/virtual.js"
+    "./dist/runtime/config.js": {
+      "import": "./dist/runtime/config.js"
     },
     "./types": {
       "types": "./dist/core/types.d.ts",
@@ -61,14 +54,6 @@
     "withastro",
     "astro-integration"
   ],
-  "scripts": {
-    "types:virtual": "tsc -p ./tsconfig.virtual.json",
-    "build": "astro-scripts build \"src/**/*.ts\" && tsc && pnpm types:virtual",
-    "build:ci": "astro-scripts build \"src/**/*.ts\"",
-    "dev": "astro-scripts dev \"src/**/*.ts\"",
-    "test": "mocha --exit --timeout 20000 \"test/*.js\" \"test/unit/**/*.js\"",
-    "test:match": "mocha --timeout 20000 \"test/*.js\" \"test/unit/*.js\" -g"
-  },
   "dependencies": {
     "@libsql/client": "^0.5.5",
     "async-listen": "^3.0.1",
@@ -91,12 +76,19 @@
     "@types/mocha": "^10.0.2",
     "@types/prompts": "^2.4.8",
     "@types/yargs-parser": "^21.0.3",
-    "astro": "workspace:*",
-    "astro-scripts": "workspace:*",
     "chai": "^4.3.10",
     "cheerio": "1.0.0-rc.12",
     "mocha": "^10.2.0",
     "typescript": "^5.2.2",
-    "vite": "^5.1.4"
+    "vite": "^5.1.4",
+    "astro": "4.5.14"
+  },
+  "scripts": {
+    "types:config": "tsc -p ./tsconfig.config-types.json",
+    "build": "astro-scripts build \"src/**/*.ts\" && tsc && pnpm types:config",
+    "build:ci": "astro-scripts build \"src/**/*.ts\"",
+    "dev": "astro-scripts dev \"src/**/*.ts\"",
+    "test": "mocha --exit --timeout 20000 \"test/*.js\" \"test/unit/**/*.js\"",
+    "test:match": "mocha --timeout 20000 \"test/*.js\" \"test/unit/*.js\" -g"
   }
 }
